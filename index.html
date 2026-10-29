@@ -1,0 +1,217 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>仙女系統使用回饋</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+/* Layout: single narrow column, one questionnaire "letter" with numbered question blocks, sticky submit summary at end */
+:root{
+  --bg:#f7f2f4; --paper:#ffffff; --ink:#2b1f2a; --muted:#7a6874; --line:#e6d9e0;
+  --accent:#a8467a; --accent-soft:#f6e3ed; --gold:#b9894a; --ok:#2f7a55;
+  --f-display:"Noto Serif TC","Songti TC",serif;
+  --f-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1c1519; --paper:#261d23; --ink:#f3e9ee; --muted:#b8a5b0; --line:#3b2f37;
+  --accent:#e08ab5; --accent-soft:#3a2431; --gold:#d8ae73; --ok:#6fc597; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1c1519; --paper:#261d23; --ink:#f3e9ee; --muted:#b8a5b0; --line:#3b2f37;
+  --accent:#e08ab5; --accent-soft:#3a2431; --gold:#d8ae73; --ok:#6fc597; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.7;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px}
+.wrap{max-width:620px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+header{padding:8px 4px 6px}
+.eyebrow{font-size:12px;letter-spacing:.18em;color:var(--gold);font-weight:700}
+h1{font-family:var(--f-display);font-size:30px;line-height:1.3;margin:6px 0 10px;text-wrap:balance}
+.lead{color:var(--muted);margin:0}
+.q{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px 18px;display:flex;flex-direction:column;gap:12px}
+.q h2{font-size:17px;margin:0;display:flex;gap:10px;align-items:baseline;text-wrap:balance}
+.num{font-family:var(--f-display);color:var(--accent);font-size:15px;flex:none}
+.hint{font-size:13px;color:var(--muted);margin:-6px 0 0}
+input[type=text],textarea{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+textarea{min-height:92px;resize:vertical}
+input:focus-visible,textarea:focus-visible,button:focus-visible,.chip input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;width:1px;height:1px}
+.chip span{display:inline-block;padding:7px 14px;border:1px solid var(--line);border-radius:999px;cursor:pointer;font-size:15px;background:var(--paper);user-select:none}
+.chip input:checked+span{background:var(--accent);border-color:var(--accent);color:var(--paper);font-weight:500}
+.tools{display:flex;flex-direction:column;gap:10px}
+.tool{border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.tool.on{border-color:var(--accent);background:var(--accent-soft)}
+.tool-head{display:flex;align-items:center;gap:10px;cursor:pointer}
+.tool-head input{width:20px;height:20px;accent-color:var(--accent);flex:none}
+.tool-name{font-weight:700}
+.tool-desc{font-size:13px;color:var(--muted)}
+.tool-body{display:flex;flex-direction:column;gap:8px;padding-left:30px}
+.stars{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.stars button{font:inherit;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:8px;min-width:40px;height:36px;cursor:pointer}
+.stars button.sel{background:var(--gold);border-color:var(--gold);color:#fff;font-weight:700}
+.stars small{color:var(--muted);font-size:12px;margin-left:4px}
+.tool-body input[type=text]{background:var(--paper)}
+.scale{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.scale button{font:inherit;font-size:14px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:10px 4px;cursor:pointer;line-height:1.3}
+.scale button b{display:block;font-family:var(--f-display);font-size:18px}
+.scale button.sel{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.submit{background:var(--paper);border:1px solid var(--accent);border-radius:14px;padding:20px 18px;display:flex;flex-direction:column;gap:12px}
+.submit h2{font-family:var(--f-display);font-size:20px;margin:0}
+.btn{font:inherit;font-weight:700;border:0;border-radius:12px;padding:14px;background:var(--accent);color:var(--paper);cursor:pointer;font-size:16px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.row{display:flex;gap:10px;flex-wrap:wrap}.row .btn{flex:1 1 180px}
+pre{white-space:pre-wrap;word-break:break-word;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;font-family:var(--f-body);font-size:14px;margin:0;max-height:320px;overflow:auto}
+.status{font-size:14px;color:var(--ok);min-height:1.4em;margin:0}
+.warn{color:var(--accent)}
+footer{text-align:center;color:var(--muted);font-size:13px}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">FAIRY TEAM ・ 皇家會議後回饋</div>
+    <h1>仙女系統工具使用回饋</h1>
+    <p class="lead">謝謝大家這段時間認真學、認真用！這份問卷大約 3 分鐘，想聽聽你真實的使用心得，好的、卡住的、想加的都可以說，我會依照大家的回饋繼續優化系統 💗</p>
+  </header>
+
+  <section class="q">
+    <h2><span class="num">01</span>你的稱呼</h2>
+    <input type="text" id="name" placeholder="例：小美 / IG 帳號">
+  </section>
+
+  <section class="q">
+    <h2><span class="num">02</span>這些工具你用過哪幾個？用起來幾分？</h2>
+    <p class="hint">勾選用過的，再幫它打分數（5 分最好用），有一句話想說也可以寫。</p>
+    <div class="tools" id="tools"></div>
+  </section>
+
+  <section class="q">
+    <h2><span class="num">03</span>整體來說，系統對你經營的幫助有多大？</h2>
+    <div class="scale" id="overall"></div>
+  </section>
+
+  <section class="q">
+    <h2><span class="num">04</span>用了之後，最有感的改變是什麼？</h2>
+    <div class="chips" id="gains"></div>
+    <textarea id="gainText" placeholder="可以分享具體例子，例如：用獲利手帳之後終於知道自己每個月賺多少"></textarea>
+  </section>
+
+  <section class="q">
+    <h2><span class="num">05</span>使用時有沒有卡住或不順的地方？</h2>
+    <div class="chips" id="pains"></div>
+    <textarea id="painText" placeholder="哪個工具、哪一步卡住？越具體我越好修 🙏"></textarea>
+  </section>
+
+  <section class="q">
+    <h2><span class="num">06</span>你最希望下一步新增什麼功能或工具？</h2>
+    <textarea id="wish" placeholder="例：希望可以有客人回購提醒、想要一鍵產生限動文案…"></textarea>
+  </section>
+
+  <section class="q">
+    <h2><span class="num">07</span>你會推薦下線夥伴一起用嗎？</h2>
+    <div class="chips" id="recommend"></div>
+  </section>
+
+  <section class="q">
+    <h2><span class="num">08</span>還有什麼想對 巧穎 說的？</h2>
+    <textarea id="note" placeholder="鼓勵、建議、心裡話都歡迎"></textarea>
+  </section>
+
+  <section class="submit">
+    <h2>完成！把回覆傳給 巧穎</h2>
+    <p class="hint" style="margin:0">按下「複製我的回覆」，再貼到 LINE 私訊給 巧穎 就完成囉。</p>
+    <pre id="preview">（填寫後這裡會出現你的回覆內容）</pre>
+    <div class="row">
+      <button class="btn" id="copy" type="button">複製我的回覆</button>
+      <button class="btn ghost" id="reset" type="button">清除重填</button>
+    </div>
+    <p class="status" id="status" aria-live="polite"></p>
+  </section>
+
+  <footer>仙女團隊 ・ 謝謝你的每一句真心話</footer>
+</div>
+
+<script>
+const TOOLS=[
+  ["仙女獲利手帳","每日營業額、成本、利潤紀錄"],
+  ["皇家獲利","一級／皇家高階獲利計算"],
+  ["仙女重啟導航","30 天經營導航與每日任務"],
+  ["仙女飛升計畫","二日跟／三日跟短影音打卡"],
+  ["仙女新人訓 4.0","新人培訓課程"],
+  ["仙女計算機","客人報價、團隊補貨、加盟試算"],
+  ["仙女產品通","產品功能、適合對象、價格"],
+  ["仙女文案庫","選產品找文案角度與開頭"],
+  ["仙女資源入口","所有工具連結一頁找到"]
+];
+const OVERALL=[["1","幾乎沒有"],["2","有一點"],["3","普通"],["4","很有幫助"],["5","超級大"]];
+const GAINS=["比較知道每天要做什麼","算錢、報價變快","發文不再卡關","更清楚自己的獲利","帶新人比較輕鬆","更有動力持續做"];
+const PAINS=["不知道從哪個開始用","操作步驟看不懂","手機上不好用","找不到連結","沒時間每天記錄","目前都很順"];
+const REC=["一定會","會，但要先教她們","還在考慮","暫時不會"];
+
+const S={tools:{},overall:null,gains:new Set(),pains:new Set(),rec:null};
+const $=id=>document.getElementById(id);
+
+function buildTools(){
+  const box=$("tools");
+  TOOLS.forEach(([n,d],i)=>{
+    const t=document.createElement("div");t.className="tool";
+    t.innerHTML=`<label class="tool-head"><input type="checkbox" id="t${i}"><span><span class="tool-name"></span><br><span class="tool-desc"></span></span></label>
+    <div class="tool-body" hidden><div class="stars" role="group"></div><input type="text" id="tn${i}" placeholder="一句話心得（選填）"></div>`;
+    t.querySelector(".tool-name").textContent=n;t.querySelector(".tool-desc").textContent=d;
+    const cb=t.querySelector("input[type=checkbox]"),body=t.querySelector(".tool-body"),stars=t.querySelector(".stars");
+    for(let s=1;s<=5;s++){const b=document.createElement("button");b.type="button";b.textContent=s+" 分";
+      b.onclick=()=>{S.tools[n].score=s;[...stars.querySelectorAll("button")].forEach((x,k)=>x.classList.toggle("sel",k+1===s));render()};stars.appendChild(b)}
+    cb.onchange=()=>{t.classList.toggle("on",cb.checked);body.hidden=!cb.checked;
+      if(cb.checked)S.tools[n]=S.tools[n]||{score:null,note:""};else delete S.tools[n];render()};
+    t.querySelector(`#tn${i}`).oninput=e=>{if(S.tools[n]){S.tools[n].note=e.target.value;render()}};
+    box.appendChild(t);
+  });
+}
+function buildScale(){
+  OVERALL.forEach(([v,l])=>{const b=document.createElement("button");b.type="button";b.innerHTML=`<b>${v}</b>`;b.append(l);
+    b.onclick=()=>{S.overall=v+" 分（"+l+"）";[...$("overall").children].forEach(x=>x.classList.toggle("sel",x===b));render()};$("overall").appendChild(b)});
+}
+function buildChips(id,list,multi,key){
+  list.forEach((txt,i)=>{const lab=document.createElement("label");lab.className="chip";
+    lab.innerHTML=`<input type="${multi?"checkbox":"radio"}" name="${id}" id="${id}${i}"><span></span>`;lab.querySelector("span").textContent=txt;
+    lab.querySelector("input").onchange=e=>{if(multi){e.target.checked?S[key].add(txt):S[key].delete(txt)}else S[key]=txt;render()};
+    $(id).appendChild(lab)});
+}
+function text(){
+  const L=[];const v=id=>$(id).value.trim();
+  L.push("【仙女系統使用回饋】");
+  L.push("稱呼："+(v("name")||"（未填）"));
+  const used=Object.entries(S.tools);
+  L.push("","▍用過的工具");
+  if(!used.length)L.push("（未勾選）");
+  used.forEach(([n,o])=>L.push(`・${n}：${o.score?o.score+" 分":"未評分"}${o.note.trim()?"｜"+o.note.trim():""}`));
+  L.push("","▍整體幫助："+(S.overall||"（未選）"));
+  L.push("","▍最有感的改變："+([...S.gains].join("、")||"（未選）"));
+  if(v("gainText"))L.push("　"+v("gainText"));
+  L.push("","▍卡住的地方："+([...S.pains].join("、")||"（未選）"));
+  if(v("painText"))L.push("　"+v("painText"));
+  L.push("","▍希望新增："+(v("wish")||"（未填）"));
+  L.push("","▍會推薦下線使用嗎："+(S.rec||"（未選）"));
+  if(v("note"))L.push("","▍想對 巧穎 說："+v("note"));
+  return L.join("\n");
+}
+function render(){$("preview").textContent=text();save()}
+function save(){try{localStorage.setItem("fairyFb",JSON.stringify({f:["name","gainText","painText","wish","note"].map(k=>$(k).value)}))}catch(e){}}
+function restore(){try{const d=JSON.parse(localStorage.getItem("fairyFb")||"null");if(d)["name","gainText","painText","wish","note"].forEach((k,i)=>$(k).value=d.f[i]||"")}catch(e){}}
+
+buildTools();buildScale();buildChips("gains",GAINS,true,"gains");buildChips("pains",PAINS,true,"pains");buildChips("recommend",REC,false,"rec");
+["name","gainText","painText","wish","note"].forEach(k=>$(k).addEventListener("input",render));
+restore();render();
+
+$("copy").onclick=()=>{
+  const t=text(),st=$("status");st.classList.remove("warn");
+  const fallback=()=>{const r=document.createRange();r.selectNodeContents($("preview"));const s=getSelection();s.removeAllRanges();s.addRange(r);
+    st.classList.add("warn");st.textContent="已幫你選取文字，請長按或按右鍵複製後貼到 LINE。"};
+  try{navigator.clipboard.writeText(t).then(()=>{st.textContent="已複製！打開 LINE 貼給 巧穎 就完成囉 ✨"},fallback)}catch(e){fallback()}
+};
+let armed=false;
+$("reset").onclick=()=>{
+  if(!armed){armed=true;$("reset").textContent="確定要清除？再按一次";setTimeout(()=>{armed=false;$("reset").textContent="清除重填"},3000);return}
+  try{localStorage.removeItem("fairyFb")}catch(e){} location.reload();
+};
+</script>
+
+</body></html>
